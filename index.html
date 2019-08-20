@@ -24,15 +24,30 @@
       font-weight: 500;
       margin: 1.61803em 0 0.8054015em;
     }
+    hr {
+      margin: 1.61803em 0;
+    }
     ul {
       margin-left: 1.61803em;
     }
     p {
       margin-bottom: 0.8054015em;
     }
+    .button {
+      display: inline-block;
+      width: 100%;
+      text-align: center;
+      padding: 1.61803em;
+      background-color: rgba(148,187,233,1);
+      transition: background-color 0.2s;
+      color: #111;
+    }
+    .button:hover {
+      background-color: rgba(238,174,202,1);
+    }
     #portrait {
       border-radius: 50%;
-      background: url("/images/portrait.png") center center;
+      background: url("/images/portrait.jpg") center center;
       background-color: rgba(148,187,233,1);
       background-size: contain;
       background-blend-mode: luminosity;
@@ -47,6 +62,11 @@
       max-width: 62em;
       margin: auto;
       min-height: 100vh;
+    }
+    @media screen and (max-width: 767px) {
+      #wrapper {
+        padding: 1.61803em;
+      }
     }
   </style>
 </head>
@@ -65,6 +85,8 @@
         <li>Write tests.</li>
       </ul>
     </p>
+    <h2><a href="mailto:james@gyroscopiq.com" class="button">Get in touch</a></h2>
+    <hr />
     <h3>Selected clients:</h3>
     <ul>
       <li>Schwab Trading Services</li>

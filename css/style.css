@@ -1,0 +1,71 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: 'Georgia', serif;
+  background-color: rgba(238,174,202,1);
+  color: #111;
+  line-height: 1.61803em;
+  width: 100%;
+}
+h1, h2, h3 {
+  text-transform: uppercase;
+  font-style: italic;
+  font-weight: 500;
+  margin: 1.61803em 0 0.8054015em;
+}
+hr {
+  margin: 1.61803em 0;
+}
+ul {
+  margin-left: 1.61803em;
+}
+p {
+  margin-bottom: 0.8054015em;
+}
+.button {
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+  padding: 1.61803em;
+  background-color: rgba(148,187,233,1);
+  transition: background-color 0.2s;
+  color: #111;
+}
+.button:hover {
+  background-color: rgba(238,174,202,1);
+}
+.sans-serif {
+  font-family: 'Helvetica', sans-serif;
+}
+.no-top-margin {
+  margin-top: 0;
+}
+.no-bottom-margin {
+  margin-bottom: 0;
+}
+#portrait {
+  border-radius: 50%;
+  background: url("/images/portrait.jpg") center center;
+  background-color: rgba(148,187,233,1);
+  background-size: contain;
+  background-blend-mode: luminosity;
+  height: 200px;
+  width: 200px;
+}
+#wrapper {
+  background: rgb(238,174,202);
+  background: linear-gradient(320deg, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
+  padding: 1.61803em 6em;
+  width: 90%;
+  max-width: 62em;
+  margin: auto;
+  min-height: 100vh;
+}
+@media screen and (max-width: 767px) {
+  #wrapper {
+    padding: 1.61803em;
+  }
+}

@@ -1,85 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>James Pierce</title>
+  <title>James Willard Pierce</title>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    body {
-      font-family: 'Georgia', serif;
-      background-color: rgba(238,174,202,1);
-      color: #111;
-      line-height: 1.61803em;
-      width: 100%;
-    }
-    h1, h2, h3 {
-      text-transform: uppercase;
-      font-style: italic;
-      font-weight: 500;
-      margin: 1.61803em 0 0.8054015em;
-    }
-    hr {
-      margin: 1.61803em 0;
-    }
-    ul {
-      margin-left: 1.61803em;
-    }
-    p {
-      margin-bottom: 0.8054015em;
-    }
-    .button {
-      display: inline-block;
-      width: 100%;
-      text-align: center;
-      padding: 1.61803em;
-      background-color: rgba(148,187,233,1);
-      transition: background-color 0.2s;
-      color: #111;
-    }
-    .button:hover {
-      background-color: rgba(238,174,202,1);
-    }
-    .no-top-margin {
-      margin-top: 0;
-    }
-    .no-bottom-margin {
-      margin-bottom: 0;
-    }
-    #portrait {
-      border-radius: 50%;
-      background: url("/images/portrait.jpg") center center;
-      background-color: rgba(148,187,233,1);
-      background-size: contain;
-      background-blend-mode: luminosity;
-      height: 200px;
-      width: 200px;
-    }
-    #wrapper {
-      background: rgb(238,174,202);
-      background: linear-gradient(320deg, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
-      padding: 1.61803em 6em;
-      width: 90%;
-      max-width: 62em;
-      margin: auto;
-      min-height: 100vh;
-    }
-    @media screen and (max-width: 767px) {
-      #wrapper {
-        padding: 1.61803em;
-      }
-    }
-  </style>
+  <link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
 <body>
   <div id="wrapper">
-    <h2 class="no-bottom-margin">ジエムス　ピールス</h1>
-    <h1 class="no-top-margin">James Pierce</h1>
+    <span id="three"></span>
+    <div>
+    <h2 class="no-bottom-margin sans-serif">ジエムス ウイラルド　ピールス</h1>
+    <h1 class="no-top-margin">James Willard Pierce</h1>
     <h2>Full Stack Engineer (est. 2014)</h2>
     <h3>About Me:</h3>
     <p>I am a software engineer whose primary focus is on the development of web-based applications. I love to architect user experiences that are a joy to interact with, and codebases that are a pleasure to work with.</p>
@@ -151,5 +84,8 @@
       </li>
     </ul>
   </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.1/TweenLite.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/86/three.min.js"></script>
+  <script src="/js/index.js"></script>
 </body>
 </html>

@@ -25,16 +25,26 @@ ul {
 p {
   margin-bottom: 0.8054015em;
 }
-.button {
+button, input[type=submit] {
+  border: 0;
+  text-transform: uppercase;
+}
+input {
+  height: 32px; 
+  background-color: rgba(238,174,202,1);
+  border: 0;
+  padding: 8px;
+}
+input[type=submit], .button {
   display: inline-block;
-  width: 100%;
   text-align: center;
   padding: 1.61803em;
   background-color: rgba(148,187,233,1);
   transition: background-color 0.2s;
   color: #111;
+  cursor: pointer;
 }
-.button:hover {
+input[type=submit]:hover, .button:hover {
   background-color: rgba(238,174,202,1);
 }
 .sans-serif {

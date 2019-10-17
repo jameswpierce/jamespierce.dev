@@ -1,0 +1,1 @@
+[How to use Javascript's Array map function](/posts/javascript-array-map.md)

@@ -3,7 +3,7 @@
 
 ## Full Stack Developer
 ### About Me:
-[Blog](/posts)
+
 I am a software engineer at <a href="https://clickherelabs.com">Click Here Labs</a> where my primary focus is on the development of web-based applications. I love to architect user experiences that are a joy to interact with, and codebases that are a pleasure to work with. I take a thoughtful and deliberate approach to each project that I am involved with, and hope to create meaningful software that empowers people to achieve their personal and professional goals.
 ## <a href="mailto:jamespierce@fastmail.com" class="button">Email me</a>
 
@@ -16,7 +16,7 @@ I am a software engineer at <a href="https://clickherelabs.com">Click Here Labs<
         | Full Stack Developer
         | January 2014 - September 2015
 
-## Stay in touch!
+<!-- ## Stay in touch!
       
-# MAILCHIMP SIGN UP
+# MAILCHIMP SIGN UP -->
 

@@ -5,5 +5,9 @@
   "license": "MIT",
   "devDependencies": {
     "vuepress": "^1.2.0"
+  },
+  "scripts": {
+    "dev": "vuepress dev",
+    "build": "vuepress build && mv .vuepress/dist dist"
   }
 }

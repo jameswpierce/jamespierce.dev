@@ -8,6 +8,6 @@
   },
   "scripts": {
     "dev": "vuepress dev",
-    "build": "vuepress build && mv .vuepress/dist dist"
+    "build": "vuepress build && mv .vuepress/dist ./dist"
   }
 }

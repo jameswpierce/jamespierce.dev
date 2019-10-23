@@ -17,9 +17,6 @@ echo 'node_modules' > .gitignore
 # dummy front page
 echo '# Hello' > index.md
 
-# initialize package.json
-# yarn init
-
 # install vuepress to project
 yarn add -D vuepress
 

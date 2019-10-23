@@ -1,14 +1,15 @@
-## ジエムス ウイラルド　ピールス
-
-# James Willard Pierce
+<div id="name">
+        <ruby class="sans-serif">ジエムス ウイラルド ピールス</ruby>
+        <h1>James Willard Pierce</h1>
+</div>
 
 ## Full Stack Developer
 
 ### About Me:
 
-I am a software engineer at <a href="https://clickherelabs.com">Click Here Labs</a> where my primary focus is on the development of web-based applications. I love to architect user experiences that are a joy to interact with, and codebases that are a pleasure to work with. I take a thoughtful and deliberate approach to each project that I am involved with, and hope to create meaningful software that empowers people to achieve their personal and professional goals.
+I am a software engineer at <a href="https://clickherelabs.com">Click Here Labs</a> where my primary focus is on the development of web-based applications. I enjoy architecting user experiences that are a joy to interact with, and codebases that are a pleasure to work with. I take a thoughtful and deliberate approach to each project that I am involved with, and hope to create meaningful software that empowers people to achieve their personal and professional goals.
 
-## <a href="mailto:jamespierce@fastmail.com" class="button">Email me</a>
+<h2><a href="mailto:jamespierce@fastmail.com" class="button">Email me</a></h2>
 
 ### Experience:
 
@@ -27,7 +28,7 @@ method="post" id="mc-embedded-subscribe-form"
 name="mc-embedded-subscribe-form" class="validate" target="_blank"
 novalidate>
 <div id="mc_embed_signup_scroll">
-        <h2>Stay in touch!</h2>
+        <h3>Stay in touch!</h3>
         <p>
         The easiest way to keep up with what I'm doing is to sign up for my mailing list.
         Expect short weekly updates discussing topics related to application

@@ -9,16 +9,43 @@ h5,
 h6
   font-weight 500
   text-transform uppercase
+  font-style italic
   border 0
 
 .sans-serif
   font-family Arial, Helvetica, sans-serif
 
 .page
-  background-color #c2eaba;
-  background-image linear-gradient(319deg, #c2eaba 0%, #c5f4e0 37%, #efc2cf 100%);
-  padding-top 4.8rem
+  background-color #c2eaba
+  background-image linear-gradient(319deg, #c2eaba 0%, #c5f4e0 37%, #efc2cf 100%)
+  padding-top 3.6rem
+
 .content
   &__default
     background-color #fff
     min-height calc(100vh - 7.2rem)
+    padding-bottom 7.2em !important
+    p
+      max-width 50em
+
+.navbar
+  background-color #c2eaba
+  background-image linear-gradient(319deg, #c2eaba 0%, #c5f4e0 37%, #efc2cf 100%)
+  opacity 0.8
+
+.navbar .links, .search-box input
+  background-color transparent !important
+
+#name h1
+    margin 0
+
+.navbar .site-name
+  display none
+
+.button
+  display inline-block
+  background-color #c2eaba
+  padding 1em
+  width auto
+  &:hover
+    background-color #efc2cf

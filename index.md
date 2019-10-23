@@ -1,14 +1,15 @@
-## ジエムス ウイラルド　ピールス
-
-# James Willard Pierce
+<div id="name">
+        <ruby class="sans-serif">ジエムス ウイラルド ピールス</ruby>
+        <h1>James Willard Pierce</h1>
+</div>
 
 ## Full Stack Developer
 
 ### About Me:
 
-I am a software engineer at <a href="https://clickherelabs.com">Click Here Labs</a> where my primary focus is on the development of web-based applications. I love to architect user experiences that are a joy to interact with, and codebases that are a pleasure to work with. I take a thoughtful and deliberate approach to each project that I am involved with, and hope to create meaningful software that empowers people to achieve their personal and professional goals.
+I am a software engineer at <a href="https://clickherelabs.com">Click Here Labs</a> where my primary focus is on the development of web-based applications. I enjoy architecting user experiences that are a joy to interact with, and codebases that are a pleasure to work with. I take a thoughtful and deliberate approach to each project that I am involved with, and hope to create meaningful software that empowers people to achieve their personal and professional goals.
 
-## <a href="mailto:jamespierce@fastmail.com" class="button">Email me</a>
+<a href="mailto:jamespierce@fastmail.com" class="button"><h2>Email me</h2></a>
 
 ### Experience:
 

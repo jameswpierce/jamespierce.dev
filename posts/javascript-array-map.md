@@ -50,9 +50,10 @@ const bios = users.map((user) => {
 
 You can see how this can be useful when you are working to render collections of data from your favorite API.
 
-## Other notes and further reading
+## Dig deeper
 
 Because calling map on an array is an *expression* in Javascript, it is very useful when working in templating languages like JSX.
 
-[Array.prototype.map() - JavaScript | MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map)
+READ: [Array.prototype.map() - JavaScript | MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map)
 
+## Thanks for reading!

@@ -93,3 +93,5 @@ Identify mission-critical functionality and get it covered with some basic specs
 READ: [Introduction to Cypress](https://docs.cypress.io/guides/core-concepts/introduction-to-cypress.html)
 
 WATCH: [Best Practices Assert(JS) Talk](https://www.youtube.com/watch?v=5XQOK0v_YRE)
+
+## Thanks for reading!

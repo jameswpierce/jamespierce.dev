@@ -28,7 +28,7 @@ method="post" id="mc-embedded-subscribe-form"
 name="mc-embedded-subscribe-form" class="validate" target="_blank"
 novalidate>
 <div id="mc_embed_signup_scroll">
-        <h2>Stay in touch!</h2>
+        <h3>Stay in touch!</h3>
         <p>
         The easiest way to keep up with what I'm doing is to sign up for my mailing list.
         Expect short weekly updates discussing topics related to application

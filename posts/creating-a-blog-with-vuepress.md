@@ -6,6 +6,8 @@ I recommend you follow along with the post to set up your own version of a VuePr
 
 ## Initialize project
 
+Note: Vuepress recommends [Yarn](https://yarnpkg.com) as its package manager.
+
 ```bash
 # create directory
 mkdir blog && cd blog

@@ -394,10 +394,14 @@ I will tackle deployment in an upcoming post. Until then:
 
 ## Dig Deeper
 
-Read: [VuePress](https://vuepress.vuejs.org/)
+READ: [VuePress](https://vuepress.vuejs.org/)
 
-Read: [@vuepress/plugin-blog](https://vuepress-plugin-blog.ulivz.com/)
+READ: [@vuepress/plugin-blog](https://vuepress-plugin-blog.ulivz.com/)
 
-Bonus Points: [ZEIT](https://zeit.co)
+BONUS POINTS: [ZEIT](https://zeit.co)
+
+READ: [Markdown](https://daringfireball.net/projects/markdown/)
+
+CHEAT: [Markdown Cheatsheet](https://commonmark.org/help/)
 
 ## Thanks for reading!

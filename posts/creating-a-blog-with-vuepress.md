@@ -2,6 +2,8 @@
 
 In this post, I am going to illustrate how to use Vuepress to quickly stand up a blog.
 
+I recommend you follow along with the post to set up your own version of a VuePress blog. The codebase is available under the MIT license here [https://github.com/jameswpierce/vuepress-blog-demo](https://github.com/jameswpierce/vuepress-blog-demo).
+
 ## Initialize project
 
 ```bash
@@ -160,8 +162,12 @@ In `IndexPost.vue` the Vuepress blog plugin exposes a variable `$pagination`, th
       </li>
     </ul>
     <div id="pagination">
-      <router-link v-if="$pagination.hasPrev" :to="$pagination.prevLink">Prev</router-link>
-      <router-link v-if="$pagination.hasNext" :to="$pagination.nextLink">Next</router-link>
+      <router-link v-if="$pagination.hasPrev" :to="$pagination.prevLink"
+        >Prev</router-link
+      >
+      <router-link v-if="$pagination.hasNext" :to="$pagination.nextLink"
+        >Next</router-link
+      >
     </div>
   </div>
 </template>
@@ -169,7 +175,7 @@ In `IndexPost.vue` the Vuepress blog plugin exposes a variable `$pagination`, th
 
 ## Inheriting from the parent theme
 
-The posts index is working as advertised, but it isn't rendering inside of the default layout of our theme.  Vuepress gives our components access to `@parent-theme` in our custom layouts, which will allow this page to inherit all the functionality included in the other pages.
+The posts index is working as advertised, but it isn't rendering inside of the default layout of our theme. Vuepress gives our components access to `@parent-theme` in our custom layouts, which will allow this page to inherit all the functionality included in the other pages.
 
 ## In the future this will work...
 
@@ -184,12 +190,18 @@ As of this writing (10/23/2019, version 1.2.0 of vuepress), there is a bug in th
       <div class="theme-default-content content__default">
         <ul id="posts-list">
           <li v-for="post in $pagination.pages">
-            <router-link class="post-link" :to="post.path">{{ post.title }}</router-link>
+            <router-link class="post-link" :to="post.path">{{
+              post.title
+            }}</router-link>
           </li>
         </ul>
         <div id="pagination">
-          <router-link v-if="$pagination.hasPrev" :to="$pagination.prevLink">Prev</router-link>
-          <router-link v-if="$pagination.hasNext" :to="$pagination.nextLink">Next</router-link>
+          <router-link v-if="$pagination.hasPrev" :to="$pagination.prevLink"
+            >Prev</router-link
+          >
+          <router-link v-if="$pagination.hasNext" :to="$pagination.nextLink"
+            >Next</router-link
+          >
         </div>
       </div>
     </template>
@@ -346,12 +358,18 @@ Finally, `IndexPost.vue`!
       <div class="theme-default-content content__default">
         <ul id="posts-list">
           <li v-for="post in $pagination.pages">
-            <router-link class="post-link" :to="post.path">{{ post.title }}</router-link>
+            <router-link class="post-link" :to="post.path">{{
+              post.title
+            }}</router-link>
           </li>
         </ul>
         <div id="pagination">
-          <router-link v-if="$pagination.hasPrev" :to="$pagination.prevLink">Prev</router-link>
-          <router-link v-if="$pagination.hasNext" :to="$pagination.nextLink">Next</router-link>
+          <router-link v-if="$pagination.hasPrev" :to="$pagination.prevLink"
+            >Prev</router-link
+          >
+          <router-link v-if="$pagination.hasNext" :to="$pagination.nextLink"
+            >Next</router-link
+          >
         </div>
       </div>
     </template>
@@ -371,6 +389,7 @@ export default {
 Annnnnnd it works! Commit this sucker to version control. You've got yourself a basic blog that builds to an ultra-fast static website, that you can easily deploy for free.
 
 I will tackle deployment in an upcoming post. Until then:
+
 ## Dig Deeper
 
 Read: [VuePress](https://vuepress.vuejs.org/)

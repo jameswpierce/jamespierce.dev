@@ -110,7 +110,7 @@ You may have noticed that the index page at [http://localhost:8080/posts/](http:
 
 ```bash
 # create directory structure for theme and layout
-mkdir -P .vuepress/theme/layouts
+mkdir -p .vuepress/theme/layouts
 ```
 
 Next we need to move `.vuepress/config.js` to the theme folder and change it's name to `index.js`

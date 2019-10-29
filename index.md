@@ -1,24 +1,8 @@
-<div id="name">
-        <ruby class="sans-serif">ジエムス ウイラルド ピールス</ruby>
-        <h1>James Willard Pierce</h1>
-</div>
+I am a full-stack web developer and team lead at <a href="https://clickherelabs.com">Click Here Labs</a>, where my primary focus is on the development of web-based applications.
 
-## Full Stack Developer
+I take a consultative approach to the projects that I am involved with. Usually this means working across disciplines to help each understand the needs of the other, identifying and addressing pain points in the product development process, and implementing best practices along the way. The end goal is to produce meaningful software that empowers people to achieve their personal and professional goals, and to have a good time doing it.
 
-### About Me:
-
-I am a software engineer at <a href="https://clickherelabs.com">Click Here Labs</a> where my primary focus is on the development of web-based applications. I enjoy architecting user experiences that are a joy to interact with, and codebases that are a pleasure to work with. I take a thoughtful and deliberate approach to each project that I am involved with, and hope to create meaningful software that empowers people to achieve their personal and professional goals.
-
-<h2><a href="mailto:hello@jamespierce.dev" class="button">Email me</a></h2>
-
-### Experience:
-
-- <a href="https://clickherelabs.com">Click Here Labs</a>
-  | Full Stack Developer / Lead
-  | October 2015 - Present
-- <a href="https://seeread.info">SEEREAD.INFO</a>
-  | Full Stack Developer
-  | January 2014 - September 2015
+<hr />
 
 <!-- Begin Mailchimp Signup Form -->
 <div id="mc_embed_signup">

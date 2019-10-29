@@ -1,9 +1,10 @@
 module.exports = {
-  title: 'James Pierce | Full-Stack Web Developer',
+  title: "James Willard Pierce",
   themeConfig: {
     nav: [
-      { text: 'Home', link: '/' },
-      { text: 'Blog', link: '/posts/' }
+      { text: "Home", link: "/" },
+      { text: "Blog", link: "/posts/" },
+      { text: "Contact", link: "mailto:hello@jamespierce.dev" }
     ]
   }
-}
+};

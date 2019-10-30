@@ -1,3 +1,9 @@
+---
+title: Using Javascript's Array#map function
+date: 2019-10-16
+excerpt: To new developers, map functions look like mysterious programmer voodoo. (Well they did to me at least.) In practice, however, they are actually pretty easy to understand, and provide a simple way to write expressive code that transforms a collection of data. 
+---
+
 # How to use Javascript's Array map function
 
 To new developers, map functions look like mysterious programmer voodoo. (Well they did to me at least.) In practice, however, they are actually pretty easy to understand, and provide a simple way to write expressive code that transforms a collection of data. 

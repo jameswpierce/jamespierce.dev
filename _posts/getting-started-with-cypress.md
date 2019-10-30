@@ -1,3 +1,9 @@
+---
+title: Adding integration testing to an existing codebase with Cypress
+date: 2019-10-23
+excerpt: You have recently come into your inheritance. Surprise! It's a giant Wordpress codebase with years of development history and no automated testing of any kind. Congratulations.
+---
+
 # Adding integration testing to an existing codebase with Cypress
 
 You have recently come into your inheritance. Surprise! It's a giant Wordpress codebase with years of development history and no automated testing of any kind. Congratulations.

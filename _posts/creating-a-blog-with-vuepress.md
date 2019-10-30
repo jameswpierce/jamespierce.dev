@@ -1,3 +1,9 @@
+---
+title: Creating a statically-generated blog with Vuepress
+date: 2019-10-24
+excerpt: In this post, I am going to illustrate how to use Vuepress to quickly stand up a blog.
+---
+
 # Creating a statically-generated blog with Vuepress
 
 In this post, I am going to illustrate how to use Vuepress to quickly stand up a blog.

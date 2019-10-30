@@ -6,5 +6,6 @@ module.exports = {
       { text: "Blog", link: "/posts/" },
       { text: "Contact", link: "mailto:hello@jamespierce.dev" }
     ]
-  }
+  },
+  plugins: ["@vuepress/blog"]
 };

@@ -12,7 +12,7 @@ This is an unfortunately common scenario for developers, and it can turn what sh
 
 ## Breaking the cycle with integration (or end-to-end) tests
 
-It isn't realistic in most situations to retroactively add unit tests to codebases with a lot of history, because it's very rare for code that is not written test-first to play nicely with unit tests. If we do try to implement testing at this level, we tend to find that they are extremely time-consuming to write, while also being brittle and therefore undependable.
+It isn't realistic in most situations to retroactively add unit tests to codebases with a lot of history, because it's very rare for code that is not written test-first to play nicely with unit tests. If we do try to implement testing at this level, we tend to find that they are extremely time-consuming to write, while also being brittle and undependable.
 
 In this situation, we are going to get the most bang for our (and our client's) buck out of integration tests, or tests that interact with our website in the same way that a user would. To write these tests we are going to spin up a copy of [Cypress](https://www.cypress.io/), an open source testing framework that makes a lot of the boring decisions for us, and lets us get started testing quickly.
 

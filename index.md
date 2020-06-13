@@ -1,3 +1,5 @@
+<img src="./images/portrait.jpg" class="portrait" />
+
 ## About me
 
 I am a full-stack web developer and team lead at <a href="https://clickherelabs.com">Click Here Labs</a>, where my primary focus is on the development of web-based applications.

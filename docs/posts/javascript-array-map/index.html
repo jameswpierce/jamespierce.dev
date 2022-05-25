@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Using Javascript&#39;s Array#map function</title>
+    <style>
+      body {
+        font-size: 16px;
+        font-family: Georgia, serif;
+        display: flex;
+        justify-content: center;
+      }
+      * {
+        font-weight: 400;
+        margin: 0;
+        padding: 0;
+      }
+      #content {
+        max-width: 80ch;
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+      }
+      #content p,
+      #content h1,
+      #content h2,
+      #content ul,
+      #content ol {
+        margin-bottom: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="content">
+      <h1>How to use Javascript's Array map function</h1>
+<p>To new developers, map functions look like mysterious programmer voodoo. (Well they did to me at least.) In practice, however, they are actually pretty easy to understand, and provide a simple way to write expressive code that transforms a collection of data.</p>
+<p>Once you get the hang of them, you will probably find yourself reaching for map (and/or reduce) functions in a lot of places where you would have previously implemented something like a <code>for</code> or a <code>while</code> loop.</p>
+<h2>What does it do?</h2>
+<p><code>map</code> iterates through each element in an array, passing that element to a callback function that then does something with it and returns an updated value. Once it is finished it returns a new array with the transformed elements. It does not mutate the array on which it is called.</p>
+<h2>Your first <code>map</code> function</h2>
+<p>Add '-san' to the end of each name in an array of names:</p>
+<pre><code class="language-js">
+const names = [ 'Takeshi', 'Mary', 'James', 'Tanaka' ];
+const honorific = '-san';
+
+const updatedNames = names.map((name) =&gt; name + honorific);
+// [ 'Takeshi-san', 'Mary-san', 'James-san', 'Tanaka-san' ]
+</code></pre>
+<p>That's it!</p>
+<h2>Something a little more interesting.</h2>
+<pre><code class="language-js">
+const users = [
+  {
+    firstName: 'James',
+    lastName: 'Pierce',
+    skills: [ 'javascript', 'ruby', 'react' ],
+    interests: [ 'drawing', 'japanese' ]
+  },
+  ...
+];
+
+const bios = users.map((user) =&gt; {
+  const { firstName, lastName, skills, interests } = user;
+  const bio = `${firstName} ${lastName} is skilled at ${skills.join(', ')}.
+ They are interested in ${interests.join(', ')}.`;
+  return bio;
+});
+
+// [&quot;James Pierce is skilled at javascript, ruby, react. They are interested in drawing, japanese.&quot;]
+
+</code></pre>
+<p>You can see how this can be useful when you are working to render collections of data from your favorite API.</p>
+<h2>Dig deeper</h2>
+<p>Because calling map on an array is an <em>expression</em> in Javascript, it is very useful when working in templating languages like JSX.</p>
+<p>READ: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map">Array.prototype.map() - JavaScript | MDN</a></p>
+<h2>Thanks for reading!</h2>
+
+    </div>
+  </body>
+</html>

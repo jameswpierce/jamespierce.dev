@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Declutter your WordPress development environment with Docker, Part 2</title>
+    <style>
+      body {
+        font-size: 16px;
+        font-family: Georgia, serif;
+        display: flex;
+        justify-content: center;
+      }
+      * {
+        font-weight: 400;
+        margin: 0;
+        padding: 0;
+      }
+      #content {
+        max-width: 80ch;
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+      }
+      #content p,
+      #content h1,
+      #content h2,
+      #content ul,
+      #content ol {
+        margin-bottom: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="content">
+      <h1>Setting up a development environment for WordPress with Docker</h1>
+<h2>Installing Docker</h2>
+<p>The simplest way to get started with Docker is to install it via the Docker Desktop app.</p>
+<p>You can find installation instructions and the download here:</p>
+<p>https://docs.docker.com/desktop/mac/install/</p>
+<h2>Initialize a new <code>git</code> repository</h2>
+<p>We are going to call our project &quot;Eevee's Training Blog&quot;.</p>
+<pre><code class="language-bash">git init eevees-training-blog &amp;&amp; cd eevees-training-blog
+</code></pre>
+<h2>Provision our environment with <code>docker-compose</code></h2>
+<p>Docker Compose allows us to programmatically provision and configure our development environment in a file <code>docker-compose.yml</code> that can be tracked in version control. This makes it simple to ensure that all developers on a team are working on the exact same environment, and to share updates to the environment as they happen.</p>
+<h3>Initialize the database</h3>
+<p>First create the file <code>docker-compose.yml</code>:</p>
+<pre><code class="language-bash">touch docker-compose.yml
+</code></pre>
+<p>Then add these lines to it:</p>
+<pre><code class="language-yml"># docker-compose.yml
+
+version: '3.3'
+
+services:
+  db:
+    image: mysql:5.7
+    platform: linux/x86_64 # for m1 environments
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: billspc
+      MYSQL_DATABASE: eevee_development
+      MYSQL_USER: eevee
+      MYSQL_PASSWORD: charizard
+</code></pre>
+<p>Then run <code>docker-compose up</code>. This will pull the image from the Docker registry and spin up a mysql server in a container! Press <code>ctrl-c</code> to stop the container.</p>
+<h3>Initialize a WordPress server</h3>
+<p>Wordpress maintains an image on the Docker public registry. We are going to pull that down and connect it to our environment's database</p>
+<pre><code class="language-yml"># docker-compose.yml
+
+...
+
+services:
+  ...
+  wordpress:
+    depends_on:
+      - db # wordpress can't run without the db, so we let docker-compose know that here
+    image: wordpress:5.8
+    platform: linux/x86_64
+    restart: always
+    ports: 
+      - 8000:80 # maps an external port '8000' to an internal port '80' this lets us see the container at localhost:8000
+    environment:
+      WORDPRESS_DB_HOST: db:3306 # docker-compose lets us use the service name as the host url
+      WORDPRESS_DB_USER: eevee
+      WORDPRESS_DB_PASSWORD: charizard
+      WORDPRESS_DB_NAME: eevee_development
+</code></pre>
+<p>Now when you run <code>docker-compose up</code> it will pull the WordPress image, configure it to pull data from the database service <code>db</code> and map its internal port <code>80</code> to a port <code>8000</code> on your host machine.</p>
+<p>You can then run the &quot;famous five-minute install&quot;, by navigating in your browser to <code>http://localhost:8000</code></p>
+<h3>Persist the data in the database</h3>
+<p>We are at a pretty good spot here. But there is a weak link in the chain. If we have to do any work with our <code>mysql</code> service we could potentially lose the data we have on our development environment. At best, this could end up as a big time suck, so we are going to use another feature of Docker -- volumes -- to make sure our data is persisted on disk in a place that won't disappear unless we want it to.</p>
+<p>We can define a volume for the mysql container like so</p>
+<pre><code class="language-yaml"># docker-compose.yml
+
+# set up the volume
+volumes:
+  db_data: {}
+
+# configure the db service to store data in the volume
+services:
+  db:
+    ...
+    volumes:
+      - db_data:/var/lib/mysql
+</code></pre>
+<p>This defines a persistent volume, which will be initialized on <code>docker-compose up</code> and which will be able to be referenced even after a <code>docker-compose down</code></p>
+<h3>Persist <code>wp-content</code> uploads</h3>
+<p>The same issue presents itself with media uploads. We are going to persist this data in our working directory</p>
+<pre><code class="language-yaml"># docker-compose.yml
+
+volumes:
+  ...
+  wp_content_uploads: {}
+
+services:
+  ...
+  wordpress:
+    ...
+    volumes:
+      - ./wp-content/uploads:/var/www/html/wp-content/uploads
+</code></pre>
+<p>Add this directory to your <code>.gitignore</code></p>
+<pre><code class="language-git">/wp-content/uploads
+</code></pre>
+<p>And make sure it is created in your project</p>
+<pre><code class="language-bash">mkdir -p wp-content/uploads
+</code></pre>
+<h3>Connect project directories to wordpress Docker image</h3>
+<pre><code class="language-yaml"># docker-compose.yml
+
+services:
+  ...
+  wordpress:
+    ...
+    volumes:
+      ...
+      - ./wp-content/plugins:/var/www/html/wp-content/plugins
+      - ./wp-content/themes:/var/www/html/wp-content/themes
+</code></pre>
+<p>Now pull in whatever starter theme you want to your <code>wp-content/themes</code> directory.</p>
+<p>I'm going to pull in <code>twentytwentyone</code> because its just the default with new wp installs</p>
+<p>TODO: does this pull from container?</p>
+<pre><code class="language-bash">mkdir wp-content/themes
+curl --output wp-content/themes/twentytwentyone.zip https://downloads.wordpress.org/theme/twentytwentyone.1.4.zip
+unzip wp-content/themes/twentytwentyone.zip -d wp-content/themes
+</code></pre>
+<h3>Exposing <code>wp-config.php</code></h3>
+<p>The official WordPress Docker image: https://hub.docker.com/_/wordpress/ allows us to append whatever we want to its internal <code>wp-config.php</code> with an environment variable <code>WORDPRESS_CONFIG_EXTRA</code> that is configurable via <code>docker-compose.yml</code></p>
+<p>We will set up a stub of this for the inevitable future:</p>
+<pre><code class="language-yaml"># docker-compose.yml
+
+...
+services:
+  ...
+  wordpress:
+    ...
+    environment:
+      ...
+      WORDPRESS_CONFIG_EXTRA: |
+         /* any line below will be added to wp-config.php on the docker container */
+         /* define('SAY_HELLO', 'hello'); */
+</code></pre>
+<h2>Conclusion</h2>
+<p>And that is it! You've got a working development environment, and a clean git repo. Any developer on your team with Docker installed can pull down the repository and spin up their environment within a few minutes, and that environment will be consistent across machines.</p>
+
+    </div>
+  </body>
+</html>

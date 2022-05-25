@@ -1,0 +1,375 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creating a statically-generated blog with Vuepress</title>
+    <style>
+      body {
+        font-size: 16px;
+        font-family: Georgia, serif;
+        display: flex;
+        justify-content: center;
+      }
+      * {
+        font-weight: 400;
+        margin: 0;
+        padding: 0;
+      }
+      #content {
+        max-width: 80ch;
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+      }
+      #content p,
+      #content h1,
+      #content h2,
+      #content ul,
+      #content ol {
+        margin-bottom: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="content">
+      <h1>Creating a statically-generated blog with Vuepress</h1>
+<p>In this post, I am going to illustrate how to use Vuepress to quickly stand up a blog.</p>
+<p>I recommend you follow along with the post to set up your own version of a VuePress blog. The codebase is available under the MIT license here <a href="https://github.com/jameswpierce/vuepress-blog-demo">https://github.com/jameswpierce/vuepress-blog-demo</a>.</p>
+<h2>Initialize project</h2>
+<p>Note: Vuepress recommends <a href="https://yarnpkg.com">Yarn</a> as its package manager.</p>
+<pre><code class="language-bash"># create directory
+mkdir blog &amp;&amp; cd blog
+
+# initialize new git repository
+git init
+
+# ignore node dependencies
+echo 'node_modules' &gt; .gitignore
+
+# dummy front page
+echo '# Hello' &gt; index.md
+
+# install vuepress to project
+yarn add -D vuepress
+
+# get this in version control!
+git add .
+git commit -m 'Initial commit'
+
+# run vuepress dev server
+yarn run vuepress dev
+</code></pre>
+<p>Nice work! You now have a hot-reloading development server available at <a href="http://localhost:8080/">http://localhost:8080</a>. It doesn't do much yet, but we have a nice environment set up to quickly begin iterating on our site.</p>
+<p>If you are familiar with <a href="https://daringfireball.net/projects/markdown/">Markdown</a>, feel free to add a little spice to your home page. Otherwise, here's a quick <a href="https://commonmark.org/help/">cheatsheet</a> to get you started.</p>
+<h2>Automatic posts</h2>
+<p>We could create a posts directory with an <code>index.md</code> that we update manually with every new blog post, but it would be a lot nicer if we had a posts index that updated automatically. For that, we are going to use the officially supported blog plugin for VuePress: <a href="https://github.com/vuepressjs/vuepress-plugin-blog">@vuepress/plugin-blog</a>.</p>
+<pre><code class="language-bash"># install vuepress blog plugin
+yarn add -D @vuepress/plugin-blog
+
+# create .vuepress directory to override defaults
+mkdir .vuepress
+
+# init custom theme config file
+touch .vuepress/config.js
+</code></pre>
+<p>Now we need to add the plugin to our site's configuration. Open <code>.vuepress/config.js</code> and add this code:</p>
+<pre><code class="language-js">// .vuepress/config.js
+
+module.exports = {
+  plugins: [&quot;@vuepress/blog&quot;]
+};
+</code></pre>
+<pre><code class="language-bash"># version controllll
+git add .
+git commit -m 'install @vuepress/plugin-blog'
+</code></pre>
+<p>Now that the plugin is installed, we need to set up our posts directory and configure the plugin to use it.</p>
+<pre><code class="language-bash"># create posts directory
+mkdir _posts
+
+# first post!
+echo '# Welcome 2 the Future' &gt; _posts/my-first-blog-post.md
+</code></pre>
+<p>and update <code>.vuepress/config.js</code> to look like this:</p>
+<pre><code class="language-js">// .vuepress/config.js
+module.exports = {
+  plugins: [
+    [
+      &quot;@vuepress/blog&quot;,
+      {
+        directories: [
+          {
+            id: &quot;post&quot;,
+            dirname: &quot;_posts&quot;,
+            path: &quot;/posts/&quot;,
+            itemPermalink: &quot;/posts/:slug&quot;
+          }
+        ]
+      }
+    ]
+  ]
+};
+</code></pre>
+<p>You may need to restart your development server to see these changes take effect. After that, you should be able to see a post with the URL: <a href="http://localhost:8080/posts/my-first-blog-post/">http://localhost:8080/posts/my-first-blog-post/</a>.</p>
+<p>Commit your changes to version control, and let's proceed.</p>
+<h2>Creating the blog index layout</h2>
+<p>You may have noticed that the index page at <a href="http://localhost:8080/posts/">http://localhost:8080/posts/</a> is blank. That is because <code>@vuepress/plugin-blog</code> is looking for a layout component called <code>IndexPost</code> in our project. Because that layout is not there, it falls back to the default Layout, which does not have any idea how to handle any data about the files in the <code>_posts</code> directory, thus rendering a blank page.</p>
+<pre><code class="language-bash"># create directory structure for theme and layout
+mkdir -p .vuepress/theme/layouts
+</code></pre>
+<p>Next we need to move <code>.vuepress/config.js</code> to the theme folder and change it's name to <code>index.js</code></p>
+<pre><code class="language-bash">mv .vuepress/config.js .vuepress/theme/index.js
+</code></pre>
+<p>Then we need to add a line to let Vuepress know that which theme to inherit defaults from.</p>
+<pre><code class="language-js">// .vuepress/theme/index.js
+module.exports = {
+  extend: &quot;@vuepress/theme-default&quot;, // add this line!
+  plugins: [
+    [...]
+  ]
+};
+</code></pre>
+<p>Now lets add a link in the navigation of our site to the <code>/posts</code> page (and throw in one back to the home page as well). Create a new file at <code>.vuepress/config.js</code> and add the code below.</p>
+<pre><code class="language-js">// .vuepress/config.js
+module.exports = {
+  themeConfig: {
+    nav: [{ text: &quot;Home&quot;, link: &quot;/&quot; }, { text: &quot;Blog&quot;, link: &quot;/posts/&quot; }]
+  }
+};
+</code></pre>
+<p>Create a new file <code>IndexPost.vue</code> in <code>.vuepress/theme/layouts</code></p>
+<pre><code class="language-bash"># initialize layout
+touch .vuepress/theme/layouts/IndexPost.vue
+</code></pre>
+<p>In <code>IndexPost.vue</code> the Vuepress blog plugin exposes a variable <code>$pagination</code>, that gives the layout access to information about the posts contained in the <code>_posts</code> directory. We can use it to generate a simple (and paginated) index like so:</p>
+<pre><code class="language-vue">// .vuepress/theme/layouts/IndexPost.vue
+
+&lt;template&gt;
+  &lt;div&gt;
+    &lt;ul id=&quot;posts-list&quot;&gt;
+      &lt;li v-for=&quot;post in $pagination.pages&quot;&gt;
+        &lt;router-link class=&quot;post-link&quot; :to=&quot;post.path&quot;&gt;
+          
+        &lt;/router-link&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;div id=&quot;pagination&quot;&gt;
+      &lt;router-link v-if=&quot;$pagination.hasPrev&quot; :to=&quot;$pagination.prevLink&quot;
+        &gt;Prev&lt;/router-link
+      &gt;
+      &lt;router-link v-if=&quot;$pagination.hasNext&quot; :to=&quot;$pagination.nextLink&quot;
+        &gt;Next&lt;/router-link
+      &gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+</code></pre>
+<h2>Inheriting from the parent theme</h2>
+<p>The posts index is working as advertised, but it isn't rendering inside of the default layout of our theme. Vuepress gives our components access to <code>@parent-theme</code> in our custom layouts, which will allow this page to inherit all the functionality included in the other pages.</p>
+<h2>In the future this will work...</h2>
+<p>As of this writing (10/23/2019, version 1.2.0 of vuepress), there is a bug in the default layout that keeps us from using Vue's slots correctly. There is a fix on the master branch, which should be released soon.</p>
+<pre><code class="language-vue">// .vuepress/theme/layouts/IndexPost.vue
+
+&lt;template&gt;
+  &lt;Layout&gt;
+    &lt;template #page-top&gt;
+      &lt;div class=&quot;theme-default-content content__default&quot;&gt;
+        &lt;ul id=&quot;posts-list&quot;&gt;
+          &lt;li v-for=&quot;post in $pagination.pages&quot;&gt;
+            &lt;router-link class=&quot;post-link&quot; :to=&quot;post.path&quot;&gt;&lt;/router-link&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+        &lt;div id=&quot;pagination&quot;&gt;
+          &lt;router-link v-if=&quot;$pagination.hasPrev&quot; :to=&quot;$pagination.prevLink&quot;
+            &gt;Prev&lt;/router-link
+          &gt;
+          &lt;router-link v-if=&quot;$pagination.hasNext&quot; :to=&quot;$pagination.nextLink&quot;
+            &gt;Next&lt;/router-link
+          &gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/template&gt;
+  &lt;/Layout&gt;
+&lt;/template&gt;
+&lt;script&gt;
+import Layout from &quot;@parent-theme/layouts/Layout.vue&quot;;
+
+export default {
+  components: {
+    Layout
+  }
+};
+&lt;/script&gt;
+</code></pre>
+<h2>A temporary workaround!</h2>
+<p>Until then, copy this code into <code>.vuepress/theme/layouts/Layout.vue</code> and use the version of <code>IndexPost.vue</code> below as well. Don't concern yourself too much with this code unless you are feeling particularly adventurous.</p>
+<pre><code class="language-vue">// .vuepress/theme/layouts/Layout.vue
+
+&lt;template&gt;
+  &lt;div
+    class=&quot;theme-container&quot;
+    :class=&quot;pageClasses&quot;
+    @touchstart=&quot;onTouchStart&quot;
+    @touchend=&quot;onTouchEnd&quot;
+  &gt;
+    &lt;Navbar v-if=&quot;shouldShowNavbar&quot; @toggle-sidebar=&quot;toggleSidebar&quot; /&gt;
+
+    &lt;div class=&quot;sidebar-mask&quot; @click=&quot;toggleSidebar(false)&quot;&gt;&lt;/div&gt;
+
+    &lt;Sidebar :items=&quot;sidebarItems&quot; @toggle-sidebar=&quot;toggleSidebar&quot;&gt;
+      &lt;template #top&gt;
+        &lt;slot name=&quot;sidebar-top&quot; /&gt;
+      &lt;/template&gt;
+      &lt;template #bottom&gt;
+        &lt;slot name=&quot;sidebar-bottom&quot; /&gt;
+      &lt;/template&gt;
+    &lt;/Sidebar&gt;
+
+    &lt;Home v-if=&quot;$page.frontmatter.home&quot; /&gt;
+
+    &lt;Page v-else :sidebar-items=&quot;sidebarItems&quot;&gt;
+      &lt;template #top&gt;
+        &lt;slot name=&quot;page-top&quot; /&gt;
+      &lt;/template&gt;
+      &lt;template #bottom&gt;
+        &lt;slot name=&quot;page-bottom&quot; /&gt;
+      &lt;/template&gt;
+    &lt;/Page&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+import Home from &quot;@parent-theme/components/Home.vue&quot;;
+import Navbar from &quot;@parent-theme/components/Navbar.vue&quot;;
+import Page from &quot;@parent-theme/components/Page.vue&quot;;
+import Sidebar from &quot;@parent-theme/components/Sidebar.vue&quot;;
+import { resolveSidebarItems } from &quot;@parent-theme/util&quot;;
+export default {
+  components: { Home, Page, Sidebar, Navbar },
+  data() {
+    return {
+      isSidebarOpen: false
+    };
+  },
+  computed: {
+    shouldShowNavbar() {
+      const { themeConfig } = this.$site;
+      const { frontmatter } = this.$page;
+      if (frontmatter.navbar === false || themeConfig.navbar === false) {
+        return false;
+      }
+      return (
+        this.$title ||
+        themeConfig.logo ||
+        themeConfig.repo ||
+        themeConfig.nav ||
+        this.$themeLocaleConfig.nav
+      );
+    },
+    shouldShowSidebar() {
+      const { frontmatter } = this.$page;
+      return (
+        !frontmatter.home &amp;&amp;
+        frontmatter.sidebar !== false &amp;&amp;
+        this.sidebarItems.length
+      );
+    },
+    sidebarItems() {
+      return resolveSidebarItems(
+        this.$page,
+        this.$page.regularPath,
+        this.$site,
+        this.$localePath
+      );
+    },
+    pageClasses() {
+      const userPageClass = this.$page.frontmatter.pageClass;
+      return [
+        {
+          &quot;no-navbar&quot;: !this.shouldShowNavbar,
+          &quot;sidebar-open&quot;: this.isSidebarOpen,
+          &quot;no-sidebar&quot;: !this.shouldShowSidebar
+        },
+        userPageClass
+      ];
+    }
+  },
+  mounted() {
+    this.$router.afterEach(() =&gt; {
+      this.isSidebarOpen = false;
+    });
+  },
+  methods: {
+    toggleSidebar(to) {
+      this.isSidebarOpen = typeof to === &quot;boolean&quot; ? to : !this.isSidebarOpen;
+      this.$emit(&quot;toggle-sidebar&quot;, this.isSidebarOpen);
+    },
+    // side swipe
+    onTouchStart(e) {
+      this.touchStart = {
+        x: e.changedTouches[0].clientX,
+        y: e.changedTouches[0].clientY
+      };
+    },
+    onTouchEnd(e) {
+      const dx = e.changedTouches[0].clientX - this.touchStart.x;
+      const dy = e.changedTouches[0].clientY - this.touchStart.y;
+      if (Math.abs(dx) &gt; Math.abs(dy) &amp;&amp; Math.abs(dx) &gt; 40) {
+        if (dx &gt; 0 &amp;&amp; this.touchStart.x &lt;= 80) {
+          this.toggleSidebar(true);
+        } else {
+          this.toggleSidebar(false);
+        }
+      }
+    }
+  }
+};
+&lt;/script&gt;
+</code></pre>
+<p>Finally, <code>IndexPost.vue</code>!</p>
+<pre><code class="language-vue">// .vuepress/theme/layouts/IndexPost.vue
+
+&lt;template&gt;
+  &lt;Layout&gt;
+    &lt;template #page-top&gt;
+      &lt;div class=&quot;theme-default-content content__default&quot;&gt;
+        &lt;ul id=&quot;posts-list&quot;&gt;
+          &lt;li v-for=&quot;post in $pagination.pages&quot;&gt;
+            &lt;router-link class=&quot;post-link&quot; :to=&quot;post.path&quot;&gt;&lt;/router-link&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+        &lt;div id=&quot;pagination&quot;&gt;
+          &lt;router-link v-if=&quot;$pagination.hasPrev&quot; :to=&quot;$pagination.prevLink&quot;
+            &gt;Prev&lt;/router-link
+          &gt;
+          &lt;router-link v-if=&quot;$pagination.hasNext&quot; :to=&quot;$pagination.nextLink&quot;
+            &gt;Next&lt;/router-link
+          &gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/template&gt;
+  &lt;/Layout&gt;
+&lt;/template&gt;
+&lt;script&gt;
+import Layout from &quot;@theme/layouts/Layout.vue&quot;;
+
+export default {
+  components: {
+    Layout
+  }
+};
+&lt;/script&gt;
+</code></pre>
+<p>Annnnnnd it works! Commit this sucker to version control. You've got yourself a basic blog that builds to an ultra-fast static website, that you can easily deploy for free.</p>
+<p>I will tackle deployment in an upcoming post. Until then:</p>
+<h2>Dig Deeper</h2>
+<p>READ: <a href="https://vuepress.vuejs.org/">VuePress</a></p>
+<p>READ: <a href="https://vuepress-plugin-blog.ulivz.com/">@vuepress/plugin-blog</a></p>
+<p>BONUS POINTS: <a href="https://zeit.co">ZEIT</a></p>
+<p>READ: <a href="https://daringfireball.net/projects/markdown/">Markdown</a></p>
+<p>CHEAT: <a href="https://commonmark.org/help/">Markdown Cheatsheet</a></p>
+<h2>Thanks for reading!</h2>
+
+    </div>
+  </body>
+</html>

@@ -16,6 +16,11 @@ The end goal is to produce meaningful software that empowers people to achieve t
 
 ## web development
 
+<ol>
+{%- for post in collections.post reversed -%}
+  <li><a href="{{ post.url }}">{{ post.data.title }}</a></li>
+{%- endfor -%}
+</ol>
 
 ## open source electronics
 

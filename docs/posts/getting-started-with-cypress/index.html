@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adding integration testing to an existing codebase with Cypress</title>
+    <style>
+      body {
+        font-size: 16px;
+        font-family: Georgia, serif;
+        display: flex;
+        justify-content: center;
+      }
+      * {
+        font-weight: 400;
+        margin: 0;
+        padding: 0;
+      }
+      #content {
+        max-width: 80ch;
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+      }
+      #content p,
+      #content h1,
+      #content h2,
+      #content ul,
+      #content ol {
+        margin-bottom: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="content">
+      <h1>Adding integration testing to an existing codebase with Cypress</h1>
+<p>You have recently come into your inheritance. Surprise! It's a giant Wordpress codebase with years of development history and no automated testing of any kind. Congratulations.</p>
+<p>This is an unfortunately common scenario for developers, and it can turn what should be routine maintenance into time-consuming and expensive games of whack-a-mole. Clients get a big bill for little visible progress, get frustrated with development shop, move to next dev shop, where the process then repeats itself. It's not pretty.</p>
+<h2>Breaking the cycle with integration (or end-to-end) tests</h2>
+<p>It isn't realistic in most situations to retroactively add unit tests to codebases with a lot of history, because it's very rare for code that is not written test-first to play nicely with unit tests. If we do try to implement testing at this level, we tend to find that they are extremely time-consuming to write, while also being brittle and undependable.</p>
+<p>In this situation, we are going to get the most bang for our (and our client's) buck out of integration tests, or tests that interact with our website in the same way that a user would. To write these tests we are going to spin up a copy of <a href="https://www.cypress.io/">Cypress</a>, an open source testing framework that makes a lot of the boring decisions for us, and lets us get started testing quickly.</p>
+<h2>Setting up Cypress</h2>
+<h3>Install</h3>
+<p>In your terminal, navigate to the root of your project and install Cypress.</p>
+<pre><code>npm install --save-dev cypress
+</code></pre>
+<h3>Update <code>package.json</code></h3>
+<p>Set up an npm script to start Cypress from command line with <code>npm run cypress</code>.</p>
+<pre><code class="language-json">{
+...
+&quot;scripts&quot;: {
+	&quot;cypress&quot;: &quot;cypress open&quot;
+	...
+},
+...
+}
+</code></pre>
+<h3>Configure Cypress</h3>
+<p>Cypress created a file called <code>cypress.json</code>. Update it with the url of the application you are testing.</p>
+<pre><code class="language-json">{
+  &quot;baseUrl&quot;: &quot;http://localhost:8080&quot; # YOUR TEST ROOT URL
+}
+</code></pre>
+<h3>Optional: Configure IDE</h3>
+<p>If you are using an IDE like VS Code, include this config in the root of your project in <code>jsconfig.json</code> to allow for autocompletion. Add this file to your <code>.gitignore</code>.</p>
+<pre><code class="language-json"># ./jsconfig.json
+{
+  &quot;exclude&quot;: [&quot;./node_modules&quot;],
+  &quot;include&quot;: [&quot;./node_modules/cypress&quot;, &quot;cypress/**/*.js&quot;]
+}
+
+</code></pre>
+<h3>Remove sample specs</h3>
+<p>Cypress generates some examples in <code>./cypress/integration</code> when you first start it up. We don't need them, so clear them out.</p>
+<h3>Write your first spec</h3>
+<p>Create a new file <code>header_spec.js</code> in <code>./integrations</code>. We are going to test that the home page has a header, and that it contains a logo with a link to the home page, and an element with the text &quot;Blog&quot; that is a link to the path <code>/blog</code>. If you have your own sample project running, feel free to test whatever links you want.</p>
+<pre><code class="language-js"># ./integrations/header_spec.js
+
+describe(&quot;Header&quot;, function() {
+  it(&quot;has navigation links&quot;, function() {
+	  cy.visit(&quot;/&quot;);
+	  cy.get(&quot;header&quot;)
+	    .find(&quot;#logo a&quot;)
+	    .should(&quot;have.attr&quot;, &quot;href&quot;, &quot;/&quot;)
+	  cy.get(&quot;header&quot;)
+	    .contains(&quot;Blog&quot;)
+	    .should(&quot;have.attr&quot;, &quot;href&quot;, &quot;/blog&quot;)
+  });
+});
+</code></pre>
+<p>Save this file and in your terminal run <code>npm run cypress</code>. The Cypress application will open with an automatically updating list of all the spec files in your codebase, along with a handy button to 'Run all specs'. When you click it, this button pops open a test runner that shows you everything Cypress is doing and the results of your specs. From this point, whenever you update your spec, Cypress will automatically rerun the tests.</p>
+<h2>Write more specs</h2>
+<p>Identify mission-critical functionality and get it covered with some basic specs. Good candidates for early coverage are logins, sign ups, and contact forms. Covering essential business functions of your site will give you the peace of mind that changes made to your codebase are not breaking the things that are most important to your audience, and allow you to confidently add features or refactor existing ones.</p>
+<h2>Dig deeper</h2>
+<p>READ: <a href="https://docs.cypress.io/guides/core-concepts/introduction-to-cypress.html">Introduction to Cypress</a></p>
+<p>CLONE: <a href="https://github.com/cypress-io/cypress-test-tiny">Tiny Cypress E2E test case</a></p>
+<p>WATCH: <a href="https://www.youtube.com/watch?v=5XQOK0v_YRE">Best Practices Assert(JS) Talk</a></p>
+<h2>Thanks for reading!</h2>
+
+    </div>
+  </body>
+</html>

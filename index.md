@@ -22,7 +22,11 @@ The end goal is to produce meaningful software that empowers people to achieve t
 {%- endfor -%}
 </ol>
 
+## generative art
+
+1. [euphoria.institute](https://euphoria.institute)
+
 ## open source electronics
 
-1. [PCB-1](/electronics/pcb-1)
+1. [lotus_0](/electronics/lotus_0)
 

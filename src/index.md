@@ -2,6 +2,8 @@
 layout: layout.njk
 ---
 
+{% image "./src/images/decline1.jpg", "black and white art" %}
+
 # James Willard Pierce
 
 I am a full-stack web developer and product consultant at [Super Basic](https://superbasic.xyz), where my primary focus is on the development of web-based applications.
@@ -26,7 +28,8 @@ The end goal is to produce meaningful software that empowers people to achieve t
 
 1. [euphoria.institute](https://euphoria.institute)
 
-## open source electronics
+
+## open source hardware
 
 1. [lotus_0](/electronics/lotus_0)
 

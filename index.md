@@ -8,7 +8,7 @@ I am a full-stack web developer and product consultant at [Super Basic](https://
 
 I've also worked at [Real Geeks](https://realgeeks.com) and [Click Here Labs](https://clickherelabs.com).
 
-If you check out the blog section, you will see some of the technologies I am interested in, which include JavaScript, CSS, HTML, TypeScript, React, Vue, Next.js, Vercel, FaunaDB, GraphQL, Ruby, and Rails.
+If you check out the blog section, you will see some of the technologies I am interested in, which include JavaScript, CSS, HTML, TypeScript, React, Ruby, and Rails.
 
 I take a consultative approach to the projects that I am involved with. Usually this means working across disciplines to help each understand the needs of the other, identifying and addressing pain points in the product development process, and implementing best practices along the way.
 

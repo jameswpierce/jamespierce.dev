@@ -1,17 +1,24 @@
 # Development
 
+Install dependencies:
+
+```bash
+npm install
+```
+
 Start a dev server locally:
 
 ```bash
-npx @11ty/eleventy --serve
+npm run serve
 ```
+
+This will hot reload updates, and output those changes to the `/docs` directory.
 
 # Deploy
 
-Build and commit
+Commit and push.
 
 ```bash
-npx @11ty/eleventy --output=docs
 git add .
 git commit -m 'message'
 git push

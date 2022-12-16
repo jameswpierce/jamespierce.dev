@@ -9,6 +9,8 @@
         font-size: 18px;
         font-family: Georgia, serif;
         display: flex;
+        flex-direction: column;
+        align-items: center;
         justify-content: center;
         background: rgb(237,238,243);
         background: linear-gradient(0deg, rgba(237,238,243,1) 0%, rgba(245,221,224,1) 100%);
@@ -21,10 +23,17 @@
         margin: 0;
         padding: 0;
       }
-      #content {
+      header {
+        width: 100%;
+      }
+      header, main {
         max-width: 60ch;
         padding-top: 2rem;
         padding-bottom: 2rem;
+      }
+      #content strong,
+      #content b {
+        font-weight: 700;
       }
       #content p,
       #content h1,
@@ -44,10 +53,17 @@
         padding: 1rem;
         overflow-x: auto;
       }
+
+      #content code {
+        background-image: linear-gradient( 109.6deg,  rgba(247,253,166,1) 11.2%, rgba(128,255,221,1) 57.8%, rgba(255,128,249,1) 85.9% );
+      }
     </style>
   </head>
   <body>
-    <div id="content">
+    <header>
+      <nav><a href="/">Home</a></nav>
+    </header>
+    <main id="content">
       <h1>Declutter your WordPress development environment with Docker, Part 1</h1>
 <p>WordPress isn't the sexiest application framework (yep) around, but it hits a sweet spot for a lot of organizations that need a relatively low-fuss web presence. It gets a lot of things right, but though it has made some large strides in this department, the developer experience still feels a bit undercooked.</p>
 <p>In my years leading a development team juggling a large collection of WordPress projects, I found that one of the most time consuming parts of each project was simply getting and keeping them running uniformly across each team member's machine.</p>
@@ -146,6 +162,6 @@
 <p>While there is an initial learning curve with a tool like Docker, it has the benefit of solving both of these problems. We can easily test our codebase against the latest version of PHP without busting our stack for a client's legacy projects. And we can maintain a Git workflow that doesn't require us to do backflips just to track our commits.</p>
 <p>It is also not as scary as it may sound to the uninitiated. I'm going to show you how, by initializing a new WordPress project, and running it all in Docker containers.</p>
 
-    </div>
+    </main>
   </body>
 </html>

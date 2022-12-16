@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How I record virtual events hosted on Discord</title>
+    <style>
+      body {
+        font-size: 18px;
+        font-family: Georgia, serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background: rgb(237,238,243);
+        background: linear-gradient(0deg, rgba(237,238,243,1) 0%, rgba(245,221,224,1) 100%);
+        background-attachment: fixed;
+        color: rgb(5,2,5);
+        min-height: 100vh;
+      }
+      * {
+        font-weight: 400;
+        margin: 0;
+        padding: 0;
+      }
+      header {
+        width: 100%;
+      }
+      header, main {
+        max-width: 60ch;
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+      }
+      #content strong,
+      #content b {
+        font-weight: 700;
+      }
+      #content p,
+      #content h1,
+      #content h2,
+      #content h3,
+      #content ul,
+      #content ol,
+      #content table {
+        margin-bottom: 2rem;
+        line-height: 1.61803;
+      }
+
+      #content pre {
+        margin-bottom: 2rem;
+        background-color: rgb(235,235,233);
+        border: 4px solid rgb(0,0,255);
+        padding: 1rem;
+        overflow-x: auto;
+      }
+
+      #content code {
+        background-image: linear-gradient( 109.6deg,  rgba(247,253,166,1) 11.2%, rgba(128,255,221,1) 57.8%, rgba(255,128,249,1) 85.9% );
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav><a href="/">Home</a></nav>
+    </header>
+    <main id="content">
+      <h1>How I record virtual events hosted on Discord</h1>
+<p>Over the past year, I've been working with my business partner Chris Reed at <a href="https://superbasic.xyz">Super Basic</a> to strengthen the development and engineering community here in the Dallas/Fort Worth Metroplex.</p>
+<p>We started a Meetup group, called <a href="https://fullstackdfw.com">Full Stack DFW</a>, where we host a monthly virtual event at 12:30 CT on the second Wednesday of every month. We have cleverly titled this series the &quot;Lunch and Learn&quot; series.</p>
+<p>All our talks are recorded and then posted to our <a href="https://www.youtube.com/channel/UCQXogK1LsaUnMAefsG9255w">Youtube Channel</a>. Having no prior experience recording virtual events, it took a while to get this process smoothed out, so I thought I'd share our process.</p>
+<h2>Software used</h2>
+<ul>
+<li><a href="https://discord.com">Discord</a></li>
+<li><a href="https://github.com/ExistentialAudio/BlackHole#installation-instructions">Blackhole</a></li>
+<li>Quicktime Player</li>
+<li>Audio MIDI Setup</li>
+</ul>
+<h2>Setting up Blackhole</h2>
+<p>Blackhole is &quot;a modern virtual audio loopback driver&quot; that lets us create virtual audio input and output devices. What it allows us to do is pipe the audio from Discord, and Discord only, to our screen recorder, without capturing anything unwanted, for instance the audio notifications from Slack or Messages. In our case, we wanted the audio from the person doing the screen recording to also be recorded, so they could participate in the conversation.</p>
+<p>First we install Blackhole, following the instructions in the link above. Once it installed, we can open the MacOS application Audio MIDI Setup to create our virtual devices. In this case, we can get away with installing the Blackhole 2ch (two-channel) driver: <code>blackhole-2ch</code>.</p>
+<p><strong>Create an Aggregate Device</strong></p>
+<p>In Audio Midi Setup, we click the &quot;+&quot; plus icon in the bottom left corner and select &quot;Create an Aggregate Device&quot;.</p>
+<p>In the &quot;Use&quot; column, we check &quot;Blackhole 2ch&quot; and the microphone input we want to use. In my case, this was the input from my cheapo headphones &quot;Soundcore Life 2&quot;.</p>
+<p><picture><source type="image/avif" srcset="/img/b4W2WJgxZP-300.avif 300w, /img/b4W2WJgxZP-600.avif 600w" sizes="600"><source type="image/jpeg" srcset="/img/b4W2WJgxZP-300.jpeg 300w, /img/b4W2WJgxZP-600.jpeg 600w" sizes="600"><source type="image/png" srcset="/img/b4W2WJgxZP-300.png 300w, /img/b4W2WJgxZP-600.png 600w" sizes="600"><img alt="Screenshot showing Audio MIDI Setup window with an aggregate device created as described in the text above." whitespaceMode="inline" loading="lazy" decoding="async" src="/img/b4W2WJgxZP-300.jpeg" width="600" height="578"></picture></p>
+<p>This device will be what our we tell our screen recorder to use as our audio source.</p>
+<p><strong>Create a Multi-Output Device</strong></p>
+<p>The Multi-Output device allows us to monitor the audio that is coming into Blackhole.</p>
+<p>We check &quot;Blackhole 2ch&quot;, our output of choice, and due to some peculiarities of MacOS's audio drivers that I do not fully understand &quot;Macbook Pro Speakers&quot; (or whatever your internal speakers are). If you don't want the sound to come over you internal speakers, choose them in the list in the sidebar, and click <em>Mute</em>.</p>
+<p><picture><source type="image/avif" srcset="/img/ULEEDFyhPS-300.avif 300w, /img/ULEEDFyhPS-600.avif 600w" sizes="600"><source type="image/jpeg" srcset="/img/ULEEDFyhPS-300.jpeg 300w, /img/ULEEDFyhPS-600.jpeg 600w" sizes="600"><source type="image/png" srcset="/img/ULEEDFyhPS-300.png 300w, /img/ULEEDFyhPS-600.png 600w" sizes="600"><img alt="Screenshot showing Audio MIDI Setup window with a multi-output device created as described in the text above." whitespaceMode="inline" loading="lazy" decoding="async" src="/img/ULEEDFyhPS-300.jpeg" width="600" height="555"></picture></p>
+<p><strong>Section summary</strong></p>
+<ol>
+<li>Install <code>blackhole-2ch</code></li>
+<li>Open <strong>Audio Midi Setup</strong> and click the <strong>+</strong> plus sign in the bottom left.</li>
+<li><strong>Create an Aggregate Device</strong> and check <strong>Blackhole 2ch</strong> and any other input you want to record.</li>
+<li>Click the <strong>+</strong> plus sign again</li>
+<li><strong>Create Multi-Output Device</strong> and check <strong>Blackhole 2ch</strong>, your <strong>internal speakers</strong>, and your preferred monitoring device. Mute your internal speakers if you wish.</li>
+</ol>
+<h2>Setting up Discord audio</h2>
+<p><strong>Discord &gt; Preferences &gt; Voice &amp; Video</strong></p>
+<p>Change your input device to <strong>Aggregate Device</strong> and your output device to <strong>Multi-Output Device</strong>.</p>
+<p><picture><source type="image/avif" srcset="/img/LZ_4aEtll6-300.avif 300w, /img/LZ_4aEtll6-600.avif 600w" sizes="600"><source type="image/jpeg" srcset="/img/LZ_4aEtll6-300.jpeg 300w, /img/LZ_4aEtll6-600.jpeg 600w" sizes="600"><source type="image/png" srcset="/img/LZ_4aEtll6-300.png 300w, /img/LZ_4aEtll6-600.png 600w" sizes="600"><img alt="Screenshot showing Discord audio setup as described in the text above." whitespaceMode="inline" loading="lazy" decoding="async" src="/img/LZ_4aEtll6-300.jpeg" width="600" height="280"></picture></p>
+<h2>Setting up Quicktime Player</h2>
+<p><strong>File &gt; New Screen Recording</strong></p>
+<p>A dialog will open with some controls. Click the <strong>Options</strong> dropdown and set the microphone to <strong>Aggregate Device</strong></p>
+<p>You're ready to record!</p>
+<h2>Setting up Discord video</h2>
+<p>Hop into the video channel. Select the stream. Click the full screen icon in the bottom right. Change the view from Grid to Focus in the top right. In the menu behind the kebob icon in the top right, uncheck &quot;Show Non-video Participants&quot;. At the bottom center, click the &quot;Hide Members&quot; button. You now have an uncluttered video stream to record in full screen.</p>
+
+    </main>
+  </body>
+</html>

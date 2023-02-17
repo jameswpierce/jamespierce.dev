@@ -16,6 +16,12 @@ I take a consultative approach to the projects that I am involved with. Usually 
 
 The end goal is to produce meaningful software that empowers people to achieve their personal and professional goals – and to have a good time doing it.
 
+## open source
+<ul>
+    <li><a href="https://github.com/superbasicxyz/airtabler">Airtabler</a> | an ORM-like interface for connecting to your Airtable data written in Typescript</li>
+    <li><a href="https://github.com/superbasicxyz/tenkit">Tenkit</a> | a wrapper for the Apple WeatherKit API written in Ruby</li>
+</ul>
+
 ## web development
 
 <ol>

@@ -16,6 +16,8 @@ I take a consultative approach to the projects that I am involved with. Usually 
 
 The end goal is to produce meaningful software that empowers people to achieve their personal and professional goals – and to have a good time doing it.
 
+<a rel="me" href="https://hachyderm.io/@jwp">@jwp@hachyderm.io on Mastodon</a>
+
 ## open source
 <ul>
     <li><a href="https://github.com/superbasicxyz/airtabler">Airtabler</a> | an ORM-like interface for connecting to your Airtable data written in Typescript</li>
